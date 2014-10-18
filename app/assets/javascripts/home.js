@@ -81,17 +81,24 @@ var Teams = {
 
 function renderTeamList(teamFunction) {
   var nbrOfDraws = 100,
-      waitLength = 5,
+      waitLength = 15,
       number     = 0;
   for (var drawNo = 0; drawNo < nbrOfDraws; drawNo++) {
     setTimeout(function() {
-      document.getElementById('progress-bar').innerHTML = '<div style="background-color:#d8d8d8;display: inline-block;height: 10px;width:'
-        +  (((number++) + 1))
-        + '%"></div>';
+        var procent = ((number++) + 1);
+        document.getElementById('progress-bar').innerHTML = '<div class="progress-bar" role="progressbar" aria-valuenow="'
+          + procent
+          + '" aria-valuemin="0" aria-valuemax="100" style="width:'
+          + procent
+          + '%;">'
+          + procent
+          + '%</div>';
+
       document.getElementById('result').innerHTML = resultListHtml(teamFunction(false));
     }, drawNo * waitLength);
   }
 }
+
 
 function renderResult() {
   if (getURLParameter('radio') === 'random') {
@@ -104,6 +111,12 @@ function renderResult() {
 function initPage() {
   renderResult();
   hide();
+  
+  document.getElementById('nbrOfTeams').value = getURLParameter('nbrOfTeams');
+  document.getElementById('randomnames').value = getURLParameter('area');
+  document.getElementById('men').value         = getURLParameter('mentext');
+  document.getElementById('women').value       = getURLParameter('womentext');
+  
   if (getURLParameter('page') === 'result' || getURLParameter('page') === null) {
     document.getElementById('participant-form').setAttribute('class', 'hidden');
   } else if (getURLParameter('page') === 'names') {

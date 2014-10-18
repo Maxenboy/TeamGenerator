@@ -17,12 +17,17 @@
         <input type="hidden" value="result" name="page">
 
         <p>
-          Number of teams (only numbers): <input class="form-control" type="number" min="2" max="99" name="nbrOfTeams" size="2" maxlength="2" autofocus id="nbrOfTeams" required />
-          <input class="form-control" type="radio" value="random" name="radio" id="random" checked>
-          Random
-          <input class="form-control" type="radio" value="gender" name="radio" id="gender">
+          <div class="form-group">
+            Number of teams (only numbers):
+            <input type="number" class="form-control" min="2" max="99" name="nbrOfTeams" size="2" maxlength="2" autofocus id="nbrOfTeams" required>
+          </div>
+          <label class="radio-inline">
+            <input type="radio" value="random" name="radio" id="random" checked> Random 
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="gender" name="radio" id="gender"> Gender
+          </label>
 
-          Gender
           <select name="list">
             <option>Sports</option>
             <option>Football</option>
@@ -33,15 +38,15 @@
         </p>
         <div id="genderwrapper">
           <div>
-            <textarea spellcheck="false" name="mentext" rows="9" cols="1" wrap="hard" id="men" placeholder="Names of the male participants" ></textarea>
+            <textarea spellcheck="false" name="mentext" rows="5" cols="1" wrap="hard" id="men" placeholder="Names of the male participants" ></textarea>
           </div>
           <div>
-            <textarea spellcheck="false" name="womentext" rows="9" cols="1" wrap="hard" id="women" placeholder="Names of the female participants" ></textarea>
+            <textarea spellcheck="false" name="womentext" rows="5" cols="1" wrap="hard" id="women" placeholder="Names of the female participants" ></textarea>
           </div>
         </div>
         <div id="randomwrapper">
           <div >
-            <textarea spellcheck="false"  name="area" rows="9" cols="1" wrap="hard" id="randomnames" placeholder="Names of the participants" ></textarea>
+            <textarea spellcheck="false"  name="area" rows="5" cols="1" wrap="hard" id="randomnames" placeholder="Names of the participants" ></textarea>
           </div>
         </div>
         <p>
@@ -53,6 +58,7 @@
 
       <section id="result-section">
         <div id="progress-bar"></div>
+        <div class="progress"></div>
         <div id="result"></div>
       </section>
 
