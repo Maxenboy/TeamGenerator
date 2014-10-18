@@ -10,6 +10,9 @@ function shuffle(o) {
 }
 
 function inputListToArray(string) {
+  if(string === null || string === undefined){
+      return [];
+  }
   return string.split('\n').filter(function(e) {/*Removes white-space elements*/
     return (/\S+/).test(e);
   });
@@ -50,7 +53,9 @@ function resultListHtml(teams) {
   var html       = '',
   team       = null,
   teamMember = null;
-
+  if( teams.length < 1 ){
+    return "<h1> Not enough names!! </h1>";
+  }
   for (var i = 0; i < teams.length; i++) {
     html += '<div class="col-sm-6 col-md-4 col-lg-3 resultbox"><h1>Team ' + (i  + 1) + '</h1><ul>';
     team = teams[i];
@@ -65,14 +70,14 @@ function resultListHtml(teams) {
 
 var Teams = {
   makeTeams: function(fromCache) {
-    var names         = inputListToArray(getURLParameter('area')),
+    var names     = inputListToArray(getURLParameter('area')),
     nbrOfTeams    = parseInt(getURLParameter('nbrOfTeams'), 10),
     shuffledTeams = teams(names, nbrOfTeams);
 
     return shuffledTeams;
   },
   makeGenderTeams: function(fromCache) {
-    var men           = inputListToArray(getURLParameter('mentext')),
+    var men       = inputListToArray(getURLParameter('mentext')),
     women         = inputListToArray(getURLParameter('womentext')),
     nbrOfTeams    = parseInt(getURLParameter('nbrOfTeams'), 10),
     shuffledTeams = teams([men, women], nbrOfTeams, true);
