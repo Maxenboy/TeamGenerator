@@ -1,0 +1,72 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+/*  Max Åberg
+ mabe1411
+ aaberg.max@gmail.com   */
+
+@font-face {
+  font-family: Resultfont;
+  src: url('font/UpperEastSide.ttf');
+}
+@font-face {
+  font-family: Writefont;
+  src: url('font/1942.ttf');
+}
+body {
+  background: url('skulls.png') fixed;
+}
+
+.row {
+  background-color: rgba(255,255,255,.6);
+}
+
+header img {
+  max-width: 15%;
+  max-height: 15%;
+}
+
+#genderwrapper {
+  width: 100%;
+  overflow: hidden;
+  table-layout: fixed;
+}
+
+#genderwrapper div {
+  display: table-cell;
+  width: 472px;
+  vertical-align: middle
+}
+
+textarea {
+  width: 85%;
+  resize: none;
+  font-family: Writefont;
+  font-size: 40px;
+}
+
+.hidden {
+  display: none;
+}
+
+h1 {
+  position: relative;
+  border-color: #eee;
+  border-style: solid;
+  background: #fff;
+  margin: 0 0 0px -15px;
+  padding: 5px 15px;
+}
+
+.team-generator {
+  margin-top: 20px;
+}
+
+.team-generator-logo {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px 0;
+}
