@@ -7,14 +7,14 @@
 
 @font-face {
   font-family: Resultfont;
-  src: assets-url('font/UpperEastSide.ttf');
+  src: url(<%= asset_path('font/UpperEastSide.ttf') %>);
 }
 @font-face {
   font-family: Writefont;
-  src: assets-url('font/1942.ttf');
+  src: url(<%= asset_path('font/1942.ttf') %>);
 }
 body {
-  background: assets-url('skulls.png') fixed;
+  background: url(<%= asset_path('skulls.png') %>) fixed;
 }
 
 .row {
