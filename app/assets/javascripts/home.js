@@ -119,9 +119,9 @@ function renderTeamList(nbrOfTeams, teamFunction, list, list1) {
 function renderResult() {
   var myFunc = function(data) {
     if (getURLParameter('radio') === 'random') {
-      renderTeamList(data.nbrOfTeams, Teams.makeTeams, data.area);
+      renderTeamList(data.nbr_of_teams, Teams.makeTeams, data.area);
     } else if (getURLParameter('radio') === 'gender') {
-      renderTeamList(data.nbrOfTeams, Teams.makeGenderTeams, data.mentext, data.womentext);
+      renderTeamList(data.nbr_of_teams, Teams.makeGenderTeams, data.mentext, data.womentext);
     }
   }
   getData(myFunc);
@@ -132,7 +132,7 @@ function initPage() {
   hide();
   
   getData(function(data) {  
-    document.getElementById('nbrOfTeams').value  = data.nbrOfTeams;
+    document.getElementById('nbrOfTeams').value  = data.nbr_of_teams;
     document.getElementById('randomnames').value = data.area;
     document.getElementById('men').value         = data.mentext;
     document.getElementById('women').value       = data.womentext;
