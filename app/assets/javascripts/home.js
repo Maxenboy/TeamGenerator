@@ -5,7 +5,7 @@ function getURLParameter(name) {
 
 
 function getData(callback) {
-  $.getJSON('home/latest_result', function(data) {
+  $.getJSON('/home/latest_result', function(data) {
     callback(data);
   });
 }
