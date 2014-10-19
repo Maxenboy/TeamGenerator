@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   end
 
   def latest_result
-  	render json: Namelist.last
+  	render json: Namelist.where(uuid: params[:uuid].last || Namelist.new
   end
 
   def shuffle
