@@ -136,6 +136,7 @@ function initResultPage() {
 }
 
 function initNamesPage() {
+  hideShowFormFields();
   document.getElementById('random').addEventListener('click', hideShowFormFields, false);
   document.getElementById('gender').addEventListener('click', hideShowFormFields, false);
   document.getElementById('result-section').setAttribute('class', 'hidden');
