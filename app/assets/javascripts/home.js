@@ -59,7 +59,7 @@ function resultListHtml(teams) {
   team       = null,
   teamMember = null;
   if( teams.length < 1 ){
-    return "<h1> Not enough names!! </h1>";
+    return '<h1> Not enough names!! </h1>';
   }
   for (var i = 0; i < teams.length; i++) {
     html += '<div class="col-sm-6 col-md-4 col-lg-3 resultbox"><h1>Team ' + (i  + 1) + '</h1><ul>';
@@ -124,28 +124,37 @@ function renderResult(data) {
   }
 }
 
-function initPage() {
-  hide();
-  switchOnRadio();
-  
-  getData(function(data) {  
-    document.getElementById('nbrOfTeams').value  = data.nbr_of_teams;
-    document.getElementById('randomnames').value = data.area;
-    document.getElementById('men').value         = data.mentext;
-    document.getElementById('women').value       = data.womentext;
+function fillTextAreas(data) {
+  document.getElementById('nbrOfTeams').value  = data.nbr_of_teams;
+  document.getElementById('randomnames').value = data.area;
+  document.getElementById('men').value         = data.mentext;
+  document.getElementById('women').value       = data.womentext;
+}
 
+function initPage() {
+
+  getData(function(data) {  
+    fillTextAreas(data);
     renderResult(data);
   });
-
   
   if (getURLParameter('page') === 'result') {
-    document.getElementById('participant-form').setAttribute('class', 'hidden');
+    initResultPage();
   } else if (getURLParameter('page') === 'names' || getURLParameter('page') === null) {
-    document.getElementById('result-section').setAttribute('class', 'hidden');
+    initNamesPage();
   }
 }
 
-function hide() {
+function initResultPage() {
+  document.getElementById('participant-form').setAttribute('class', 'hidden');
+}
+
+function initNamesPage() {
+  document.getElementById('random').addEventListener('click', hide, false);
+  document.getElementById('gender').addEventListener('click', hide, false);
+
+  document.getElementById('result-section').setAttribute('class', 'hidden');
+
   if (document.getElementById('random').checked) {
     document.getElementById('genderwrapper').setAttribute('class', 'hidden');
     document.getElementById('randomwrapper').setAttribute('class', '');
@@ -153,11 +162,6 @@ function hide() {
     document.getElementById('randomwrapper').setAttribute('class', 'hidden');
     document.getElementById('genderwrapper').setAttribute('class', '');
   }
-}
-
-function switchOnRadio() {
-  document.getElementById('random').addEventListener('click', hide, false);
-  document.getElementById('gender').addEventListener('click', hide, false);
 }
 
 window.addEventListener('load', initPage, false);
