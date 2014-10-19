@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   end
 
   def latest_result
-  	render json: Namelist.last #.where(uuid: params[:uuid]).last || Namelist.new
+  	render json: Namelist.where(uuid: user_uuid).last || Namelist.new
   end
 
   def shuffle
@@ -14,6 +14,6 @@ class HomeController < ApplicationController
   		nbr_of_teams: params[:nbrOfTeams],
       uuid:         params[:uuid]
   	)
-	redirect_to home_index_path(page: :result, radio: params[:radio], uuid: params[:uuid])
+  	redirect_to home_index_path(page: :result, radio: params[:radio])
   end
 end

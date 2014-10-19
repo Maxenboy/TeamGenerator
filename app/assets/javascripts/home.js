@@ -72,12 +72,12 @@ function resultListHtml(teams) {
 
 var Teams = {
   makeTeams: function(nbrOfTeams, names) {
-    var names     = inputListToArray(names),
+    var names = inputListToArray(names);
     return teams(names, nbrOfTeams);
   },
   makeGenderTeams: function(nbrOfTeams, men, women) {
-    var men       = inputListToArray(men),
-    women         = inputListToArray(women),
+    var men   = inputListToArray(men),
+        women = inputListToArray(women);
     return teams([men, women], nbrOfTeams, true);
   }
 };
@@ -108,7 +108,6 @@ function renderTeamList(nbrOfTeams, teamFunction, list, list1) {
     }, drawNo * waitLength);
   }
 }
-
 
 function renderResult(data) {
   if (getURLParameter('radio') === 'random') {
