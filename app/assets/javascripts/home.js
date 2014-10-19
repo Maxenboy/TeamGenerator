@@ -126,12 +126,14 @@ function renderResult(data) {
 
 function initPage() {
   hide();
+  switchOnRadio();
   
   getData(function(data) {  
     document.getElementById('nbrOfTeams').value  = data.nbr_of_teams;
     document.getElementById('randomnames').value = data.area;
     document.getElementById('men').value         = data.mentext;
     document.getElementById('women').value       = data.womentext;
+
     renderResult(data);
   });
 
@@ -159,5 +161,3 @@ function switchOnRadio() {
 }
 
 window.addEventListener('load', initPage, false);
-window.addEventListener("load", switchOnRadio, false);
-
