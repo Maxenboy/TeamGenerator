@@ -74,24 +74,22 @@ function resultListHtml(teams) {
 }
 
 var Teams = {
-  makeTeams: function(names) {
+  makeTeams: function(nbrOfTeams, names) {
     var names     = inputListToArray(names),
-    nbrOfTeams    = parseInt(getURLParameter('nbrOfTeams'), 10),
     shuffledTeams = teams(names, nbrOfTeams);
 
     return shuffledTeams;
   },
-  makeGenderTeams: function(men, women) {
+  makeGenderTeams: function(nbrOfTeams, men, women) {
     var men       = inputListToArray(men),
     women         = inputListToArray(women),
-    nbrOfTeams    = parseInt(getURLParameter('nbrOfTeams'), 10),
     shuffledTeams = teams([men, women], nbrOfTeams, true);
 
     return shuffledTeams;
   }
 };
 
-function renderTeamList(teamFunction, list, list1) {
+function renderTeamList(nbrOfTeams, teamFunction, list, list1) {
   var nbrOfDraws = 100,
   waitLength = 15,
   number     = 0;
@@ -106,7 +104,7 @@ function renderTeamList(teamFunction, list, list1) {
       + procent
       + '%</div>';
 
-      document.getElementById('result').innerHTML = resultListHtml(teamFunction(list, list1));
+      document.getElementById('result').innerHTML = resultListHtml(teamFunction(nbrOfTeams, list, list1));
       var resultBoxes = document.getElementsByClassName('resultbox');
       var maxHeight   = resultBoxes[0].clientHeight;
       for (var i = 0; i < resultBoxes.length; i++){
@@ -121,9 +119,9 @@ function renderTeamList(teamFunction, list, list1) {
 function renderResult() {
   var myFunc = function(data) {
     if (getURLParameter('radio') === 'random') {
-      renderTeamList(Teams.makeTeams, data.area);
+      renderTeamList(data.nbrOfTeams, Teams.makeTeams, data.area);
     } else if (getURLParameter('radio') === 'gender') {
-      renderTeamList(Teams.makeGenderTeams, data.mentext, data.womentext);
+      renderTeamList(data.nbrOfTeams, Teams.makeGenderTeams, data.mentext, data.womentext);
     }
   }
   getData(myFunc);

@@ -13,7 +13,6 @@ class HomeController < ApplicationController
   		womentext:    params[:womentext],
   		nbr_of_teams: params[:nbrOfTeams]
   	)
-	#redirect_to home_index_path(page: :result)   	
-	render "home/index"
+	redirect_to home_index_path(page: :result)   	
   end
 end
