@@ -36,6 +36,8 @@ group :production do
   gem 'rails_12factor' # Heroku integration gem
 end
 
+gem 'chartkick'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
