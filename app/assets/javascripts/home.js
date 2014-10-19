@@ -3,7 +3,6 @@ function getURLParameter(name) {
   return decodeURIComponent((getParamRegex.exec(location.search) || [ ,''])[1].replace(/\+/g, '%20')) || null;
 }
 
-
 function getData(callback) {
   $.getJSON('/home/latest_result', function(data) {
     callback(data);
@@ -24,12 +23,12 @@ function inputListToArray(string) {
 }
 
 function teams(names, nbrOfTeams, multiples) {
-  var teams = [];
+  var teams  = [],
+      result = null;
   if (multiples === true) {
-    var nameLists  = names,
     startIndex = 0;
-    for (var i = 0; i < nameLists.length; i++) {
-      var result = fillTeams(teams, nameLists[i], nbrOfTeams, startIndex);
+    for (var i = 0; i < names.length; i++) {
+      result     = fillTeams(teams, names[i], nbrOfTeams, startIndex);
       teams      = result.result;
       startIndex = result.startIndex;
     }
@@ -40,7 +39,7 @@ function teams(names, nbrOfTeams, multiples) {
 }
 
 function fillTeams(teams, names, nbrOfTeams, startIndex) {
-  var shuffled     = shuffle(names),
+  var shuffled = shuffle(names),
   startIndex   = startIndex || 0,
   currentIndex = null;
   for (var i = 0; i < shuffled.length; i++) {
@@ -55,12 +54,10 @@ function fillTeams(teams, names, nbrOfTeams, startIndex) {
 }
 
 function resultListHtml(teams) {
-  var html       = '',
+  var html   = '',
   team       = null,
   teamMember = null;
-  if( teams.length < 1 ){
-    return '<h1> Not enough names!! </h1>';
-  }
+  if( teams.length < 1 ) return '<h1> Not enough names!! </h1>';
   for (var i = 0; i < teams.length; i++) {
     html += '<div class="col-sm-6 col-md-4 col-lg-3 resultbox"><h1>Team ' + (i  + 1) + '</h1><ul>';
     team = teams[i];
@@ -76,23 +73,21 @@ function resultListHtml(teams) {
 var Teams = {
   makeTeams: function(nbrOfTeams, names) {
     var names     = inputListToArray(names),
-    shuffledTeams = teams(names, nbrOfTeams);
-
-    return shuffledTeams;
+    return teams(names, nbrOfTeams);
   },
   makeGenderTeams: function(nbrOfTeams, men, women) {
     var men       = inputListToArray(men),
     women         = inputListToArray(women),
-    shuffledTeams = teams([men, women], nbrOfTeams, true);
-
-    return shuffledTeams;
+    return teams([men, women], nbrOfTeams, true);
   }
 };
 
 function renderTeamList(nbrOfTeams, teamFunction, list, list1) {
   var nbrOfDraws = 100,
-  waitLength = 15,
-  number     = 0;
+  waitLength     = 15,
+  number         = 0,
+  resultBoxes    = null,
+  maxHeight      = null;
   for (var drawNo = 0; drawNo < nbrOfDraws; drawNo++) {
     setTimeout(function() {
       var procent = ((number++) + 1);
@@ -105,12 +100,11 @@ function renderTeamList(nbrOfTeams, teamFunction, list, list1) {
       + '%</div>';
 
       document.getElementById('result').innerHTML = resultListHtml(teamFunction(nbrOfTeams, list, list1));
-      var resultBoxes = document.getElementsByClassName('resultbox');
-      var maxHeight   = resultBoxes[0].clientHeight;
-      for (var i = 0; i < resultBoxes.length; i++){
+      resultBoxes = document.getElementsByClassName('resultbox');
+      maxHeight   = resultBoxes[0].clientHeight;
+      for (var i = 0; i < resultBoxes.length; i++) {
         resultBoxes[i].style.minHeight = maxHeight + 'px';
       }
-
     }, drawNo * waitLength);
   }
 }
