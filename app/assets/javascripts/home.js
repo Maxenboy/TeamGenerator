@@ -118,7 +118,7 @@ var Teams = {
 
 function renderTeamList(nbrOfTeams, teamFunction, list, list1) {
   var nbrOfDraws = 100,
-  waitLength     = 15,
+  waitLength     = 50,
   number         = 0,
   resultBoxes    = null,
   maxHeight      = null;
@@ -159,6 +159,7 @@ function fillTextAreas(data) {
 }
 
 function initResultPage() {
+  document.getElementById('music').innerHTML = '<audio autoplay="true" src="/flash.mp3">'
   document.getElementById('participant-form').setAttribute('class', 'hidden');
 }
 
