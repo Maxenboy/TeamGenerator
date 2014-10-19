@@ -131,20 +131,6 @@ function fillTextAreas(data) {
   document.getElementById('women').value       = data.womentext;
 }
 
-function initPage() {
-
-  getData(function(data) {  
-    fillTextAreas(data);
-    renderResult(data);
-  });
-  
-  if (getURLParameter('page') === 'result') {
-    initResultPage();
-  } else if (getURLParameter('page') === 'names' || getURLParameter('page') === null) {
-    initNamesPage();
-  }
-}
-
 function initResultPage() {
   document.getElementById('participant-form').setAttribute('class', 'hidden');
 }
@@ -161,6 +147,19 @@ function initNamesPage() {
   } else {
     document.getElementById('randomwrapper').setAttribute('class', 'hidden');
     document.getElementById('genderwrapper').setAttribute('class', '');
+  }
+}
+
+function initPage() {
+  getData(function(data) {  
+    fillTextAreas(data);
+    renderResult(data);
+  });
+  
+  if (getURLParameter('page') === 'result') {
+    initResultPage();
+  } else if (getURLParameter('page') === 'names' || getURLParameter('page') === null) {
+    initNamesPage();
   }
 }
 
