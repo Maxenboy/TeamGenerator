@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   end
 
   def latest_result
-  	render json: Namelist.where(uuid: user_uuid).last || Namelist.new
+  	render json: Namelist.latest_user_list(user_uuid) || Namelist.new
   end
 
   def shuffle
@@ -18,7 +18,16 @@ class HomeController < ApplicationController
   end
 
   def shuffle_chart
-    user_namelists = Namelist.where(uuid: user_uuid)
-    render json: user_namelists.group(:nbr_of_teams).count
+    render json: Namelist.user_lists(user_uuid)
+                         .group_nbr_of_teams_count
+  end
+
+  def user_shuffled_date_chart
+    render json: Namelist.user_lists(user_uuid)
+                         .group_day_created_count
+  end
+
+  def all_shuffled_date_chart
+    render json: Namelist.all.group_day_created_count
   end
 end
