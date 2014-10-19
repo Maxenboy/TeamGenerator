@@ -156,8 +156,8 @@ function hide() {
 }
 
 function switchOnRadio() {
-  document.getElementById("random").addEventListener("click", hide, false);
-  document.getElementById("gender").addEventListener("click", hide, false);
+  document.getElementById('random').addEventListener('click', hide, false);
+  document.getElementById('gender').addEventListener('click', hide, false);
 }
 
 window.addEventListener('load', initPage, false);
