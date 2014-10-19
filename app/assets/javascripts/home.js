@@ -9,10 +9,44 @@ function getData(callback) {
   });
 }
 
+var seeder = function() {
+ var seed = [];
+ return {
+  set: function(length) {
+    if (seed.length > 0 ) return seed;
+    for (var i = 0; i < length; i++) {
+      seed.push(Math.random());
+    }
+    return seed;
+  },
+  get: function() {
+   return seed;
+  },
+  clear: function() {
+   seed = []; 
+  }
+ };
+}
+
+function randomShuffle(ar, seed) {
+  var numbers  = [],
+      shuffled = [];
+  for (var a = 0, max = ar.length; a < max; a++) {
+    numbers.push(a);
+  }
+  for (var i = 0, len = ar.length; i < len; i++ ) {
+      var r = parseInt(seed[i] * (len - i));
+      shuffled.push(ar[numbers[r]]);
+      numbers.splice(r,1);
+  }
+  return shuffled;
+}
+
 // Shuffle array
 function shuffle(o) {
-  for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-    return o;
+  var seed = seeder();
+  seed.set(o.length);
+  return randomShuffle(o, seed.get())
 }
 
 function inputListToArray(string) {
