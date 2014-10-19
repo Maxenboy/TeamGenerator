@@ -17,7 +17,6 @@
         <input type="hidden" value="result" name="page">
         <input type="hidden" value="<%= user_uuid %>" name="uuid">
 
-        <p>
           <div class="form-group">
             Number of teams (only numbers):
             <input type="number" class="form-control" min="2" max="99" autocomplete="off" name="nbrOfTeams" size="2" maxlength="2" autofocus id="nbrOfTeams" required>
@@ -28,7 +27,8 @@
           <label class="radio-inline">
             <input type="radio" value="gender" name="radio" id="gender"> Gender
           </label>
-        </p>
+          <input class="btn btn-default" type="submit" value="Generate" />
+          <br><br>
         <div id="genderwrapper" >
           <div>
             <textarea spellcheck="false" name="mentext" rows="5" cols="1" wrap="hard" id="men" placeholder="Names of the male participants" ></textarea>
@@ -43,7 +43,7 @@
           </div>
         </div>
         <p>
-          <input class="btn btn-default" type="submit" value="Generate" id="generate" />
+          <input class="btn btn-default" type="submit" value="Generate" />
           <input class="btn btn-default" type="reset" value="Clear" />
         </p>
 
