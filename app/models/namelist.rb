@@ -1,5 +1,6 @@
 class Namelist < ActiveRecord::Base
   scope :user_lists, ->(uuid) { where(uuid: uuid) }
+  scope :recent, -> { where('created_at > ?', 2.weeks.ago) }
 
   def self.latest_user_list(uuid)
     user_lists(uuid).last

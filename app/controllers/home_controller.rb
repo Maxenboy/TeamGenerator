@@ -23,11 +23,11 @@ class HomeController < ApplicationController
   end
 
   def user_shuffled_date_chart
-    render json: Namelist.user_lists(user_uuid)
+    render json: Namelist.where('created_at > ?', 2.weeks.ago).user_lists(user_uuid)
                          .group_day_created_count
   end
 
   def all_shuffled_date_chart
-    render json: Namelist.all.group_day_created_count
+    render json: Namelist.where('created_at > ?', 2.weeks.ago).all.group_day_created_count
   end
 end
