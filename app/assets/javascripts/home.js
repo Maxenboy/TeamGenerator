@@ -118,13 +118,13 @@ var Teams = {
 
 function renderTeamList(nbrOfTeams, teamFunction, list, list1) {
   var nbrOfDraws = 100,
-  waitLength     = 50,
+  waitLength     = 25,
   number         = 0,
   resultBoxes    = null,
   maxHeight      = null;
   for (var drawNo = 0; drawNo < nbrOfDraws; drawNo++) {
     setTimeout(function() {
-      var procent = ((number++) + 1);
+      var procent = (((number++) + 1));
       document.getElementById('progress-bar').innerHTML = '<div class="progress-bar" role="progressbar" aria-valuenow="'
       + procent
       + '" aria-valuemin="0" aria-valuemax="100" style="width:'
@@ -159,7 +159,7 @@ function fillTextAreas(data) {
 }
 
 function initResultPage() {
-  document.getElementById('music').innerHTML = '<audio autoplay="true" src="/flash.mp3">'
+  document.getElementById('music').innerHTML = '<audio autoplay="true" src="/flashs.mp3">'
   document.getElementById('participant-form').setAttribute('class', 'hidden');
 }
 
