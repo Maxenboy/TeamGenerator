@@ -136,11 +136,12 @@ function initResultPage() {
 }
 
 function initNamesPage() {
-  document.getElementById('random').addEventListener('click', hide, false);
-  document.getElementById('gender').addEventListener('click', hide, false);
-
+  document.getElementById('random').addEventListener('click', hideShowFormFields, false);
+  document.getElementById('gender').addEventListener('click', hideShowFormFields, false);
   document.getElementById('result-section').setAttribute('class', 'hidden');
+}
 
+function hideShowFormFields() {
   if (document.getElementById('random').checked) {
     document.getElementById('genderwrapper').setAttribute('class', 'hidden');
     document.getElementById('randomwrapper').setAttribute('class', '');
