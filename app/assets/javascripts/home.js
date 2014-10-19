@@ -3,6 +3,13 @@ function getURLParameter(name) {
   return decodeURIComponent((getParamRegex.exec(location.search) || [ ,''])[1].replace(/\+/g, '%20')) || null;
 }
 
+
+function getData(callback) {
+  $.getJSON('home/latest_result', function(data) {
+    callback(data);
+  });
+}
+
 // Shuffle array
 function shuffle(o) {
   for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
@@ -10,10 +17,8 @@ function shuffle(o) {
 }
 
 function inputListToArray(string) {
-  if(string === null || string === undefined){
-      return [];
-  }
-  return string.split('\n').filter(function(e) {/*Removes white-space elements*/
+  if(string === null || string === undefined) return [];
+  return string.replace('\r', '').split('\n').filter(function(e) {/*Removes white-space elements*/
     return (/\S+/).test(e);
   });
 }
@@ -69,16 +74,16 @@ function resultListHtml(teams) {
 }
 
 var Teams = {
-  makeTeams: function(fromCache) {
-    var names     = inputListToArray(getURLParameter('area')),
+  makeTeams: function(names) {
+    var names     = inputListToArray(names),
     nbrOfTeams    = parseInt(getURLParameter('nbrOfTeams'), 10),
     shuffledTeams = teams(names, nbrOfTeams);
 
     return shuffledTeams;
   },
-  makeGenderTeams: function(fromCache) {
-    var men       = inputListToArray(getURLParameter('mentext')),
-    women         = inputListToArray(getURLParameter('womentext')),
+  makeGenderTeams: function(men, women) {
+    var men       = inputListToArray(men),
+    women         = inputListToArray(women),
     nbrOfTeams    = parseInt(getURLParameter('nbrOfTeams'), 10),
     shuffledTeams = teams([men, women], nbrOfTeams, true);
 
@@ -86,7 +91,7 @@ var Teams = {
   }
 };
 
-function renderTeamList(teamFunction) {
+function renderTeamList(teamFunction, list, list1) {
   var nbrOfDraws = 100,
   waitLength = 15,
   number     = 0;
@@ -101,7 +106,7 @@ function renderTeamList(teamFunction) {
       + procent
       + '%</div>';
 
-      document.getElementById('result').innerHTML = resultListHtml(teamFunction(false));
+      document.getElementById('result').innerHTML = resultListHtml(teamFunction(list, list1));
       var resultBoxes = document.getElementsByClassName('resultbox');
       var maxHeight   = resultBoxes[0].clientHeight;
       for (var i = 0; i < resultBoxes.length; i++){
@@ -114,21 +119,27 @@ function renderTeamList(teamFunction) {
 
 
 function renderResult() {
-  if (getURLParameter('radio') === 'random') {
-    renderTeamList(Teams.makeTeams);
-  } else if (getURLParameter('radio') === 'gender') {
-    renderTeamList(Teams.makeGenderTeams);
+  var myFunc = function(data) {
+    if (getURLParameter('radio') === 'random') {
+      renderTeamList(Teams.makeTeams, data.area);
+    } else if (getURLParameter('radio') === 'gender') {
+      renderTeamList(Teams.makeGenderTeams, data.mentext, data.womentext);
+    }
   }
+  getData(myFunc);
 }
 
 function initPage() {
   renderResult();
   hide();
   
-  document.getElementById('nbrOfTeams').value = getURLParameter('nbrOfTeams');
-  document.getElementById('randomnames').value = getURLParameter('area');
-  document.getElementById('men').value         = getURLParameter('mentext');
-  document.getElementById('women').value       = getURLParameter('womentext');
+  getData(function(data) {  
+    document.getElementById('nbrOfTeams').value  = data.nbrOfTeams;
+    document.getElementById('randomnames').value = data.area;
+    document.getElementById('men').value         = data.mentext;
+    document.getElementById('women').value       = data.womentext;
+  });
+
   
   if (getURLParameter('page') === 'result') {
     document.getElementById('participant-form').setAttribute('class', 'hidden');
