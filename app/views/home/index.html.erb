@@ -15,6 +15,7 @@
       <form method="post" action="/home/shuffle" id="participant-form" class="form-inline">
 
         <input type="hidden" value="result" name="page">
+        <input type="hidden" value="<%= params[:uuid] ? params[:uuid] : SecureRandom.hex(32) %>" name="uuid">
 
         <p>
           <div class="form-group">

@@ -11,8 +11,9 @@ class HomeController < ApplicationController
   		area: 	      params[:area],
   		mentext:      params[:mentext],
   		womentext:    params[:womentext],
-  		nbr_of_teams: params[:nbrOfTeams]
+  		nbr_of_teams: params[:nbrOfTeams],
+      uuid:         params[:uuid]
   	)
-	redirect_to home_index_path(page: :result,radio: params[:radio])   	
+	redirect_to home_index_path(page: :result, radio: params[:radio], uuid: params[:uuid])
   end
 end
