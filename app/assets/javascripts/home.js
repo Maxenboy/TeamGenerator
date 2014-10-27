@@ -160,7 +160,7 @@ function fillTextAreas(data) {
 }
 
 function initResultPage() {
-  document.getElementById('music').innerHTML = '<audio autoplay="true" src="/flashs.mp3">'
+  document.getElementById('music').innerHTML = '<audio autoplay="true" src="/swoosh.mp3">'
   document.getElementById('participant-form').setAttribute('class', 'hidden');
 }
 
