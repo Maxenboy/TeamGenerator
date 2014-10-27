@@ -93,7 +93,7 @@ function resultListHtml(teams) {
   teamMember = null;
   if( teams.length < 1 ) return '<h1> Not enough names!! </h1>';
   for (var i = 0; i < teams.length; i++) {
-    html += '<div class="col-sm-6 col-md-4 col-lg-3 resultbox"><h1>Team ' + (i  + 1) + '</h1><ul>';
+    html += '<div class="col-sm-6 col-md-4 col-lg-3 resultbox"><h1 contenteditable="true">Team ' + (i  + 1) + '</h1><ul>';
     team = teams[i];
     for (var j = 0; j < team.length; j++) {
       teamMember = team[j];
@@ -103,6 +103,7 @@ function resultListHtml(teams) {
   }
   return html;
 }
+
 
 var Teams = {
   makeTeams: function(nbrOfTeams, names) {
