@@ -108,26 +108,26 @@ function resultListHtml(teams) {
 function teamHeading(category,index){
   var heading = '';
   switch(category){
-    case "animal":
+    case "animals":
     heading = 'The ' + DOMESTIC_ANIMALS[Math.floor((Math.random() * DOMESTIC_ANIMALS.length))] + 's';
     break;
-    case "city":
+    case "cities":
     heading = 'The ' + CITIES[Math.floor((Math.random() * CITIES.length))] + 's';
     break;
-    case "country":
+    case "countries":
     heading = 'The ' + COUNTRIES[Math.floor((Math.random() * COUNTRIES.length))] + 's';
     break;
-    case "name":
+    case "names":
     heading = 'The ' + NAMES[Math.floor((Math.random() * NAMES.length))] + 's';
     break;
-    case "colour":
+    case "colours":
     heading = 'The ' + COLOURS[Math.floor((Math.random() * COLOURS.length))] + 's';
     break;
-    case "fruit":
+    case "fruits":
     heading = 'The ' + FRUITS[Math.floor((Math.random() * FRUITS.length))] + 's';
     break;
     default:
-    heading = 'Team' + index + 1;
+    heading = 'Team ' + index + 1;
     break;
   }
   return heading;
