@@ -9,6 +9,7 @@ function getData(callback) {
   });
 }
 
+
 var seeder = function() {
  var seed = [];
  return {
@@ -21,23 +22,23 @@ var seeder = function() {
   },
   get: function() {
    return seed;
-  },
-  clear: function() {
+ },
+ clear: function() {
    seed = []; 
-  }
- };
+ }
+};
 }
 
 function randomShuffle(ar, seed) {
   var numbers  = [],
-      shuffled = [];
+  shuffled = [];
   for (var a = 0, max = ar.length; a < max; a++) {
     numbers.push(a);
   }
   for (var i = 0, len = ar.length; i < len; i++ ) {
-      var r = parseInt(seed[i] * (len - i));
-      shuffled.push(ar[numbers[r]]);
-      numbers.splice(r,1);
+    var r = parseInt(seed[i] * (len - i));
+    shuffled.push(ar[numbers[r]]);
+    numbers.splice(r,1);
   }
   return shuffled;
 }
@@ -58,7 +59,7 @@ function inputListToArray(string) {
 
 function teams(names, nbrOfTeams, multiples) {
   var teams  = [],
-      result = null;
+  result = null;
   if (multiples === true) {
     startIndex = 0;
     for (var i = 0; i < names.length; i++) {
@@ -93,7 +94,7 @@ function resultListHtml(teams) {
   teamMember = null;
   if( teams.length < 1 ) return '<h1> Not enough names!! </h1>';
   for (var i = 0; i < teams.length; i++) {
-    html += '<div class="col-sm-6 col-md-4 col-lg-3 resultbox"><h1 contenteditable="true">Team ' + (i  + 1) + '</h1><ul>';
+    html += '<div class="col-sm-6 col-md-4 col-lg-3 resultbox"><h1 contenteditable="true">Team '+(i+1)+'</h1><ul>';
     team = teams[i];
     for (var j = 0; j < team.length; j++) {
       teamMember = team[j];
@@ -104,6 +105,18 @@ function resultListHtml(teams) {
   return html;
 }
 
+function teamHeading(array,category,index){
+  var heading = '';
+  switch(category){
+    case "animal":
+    heading = array[Math.floor((Math.random() * array.length))];
+    break;
+    default:
+    heading = 'Team' + index+1;
+    break;
+  }
+  return heading;
+}
 
 var Teams = {
   makeTeams: function(nbrOfTeams, names) {
@@ -112,7 +125,7 @@ var Teams = {
   },
   makeGenderTeams: function(nbrOfTeams, men, women) {
     var men   = inputListToArray(men),
-        women = inputListToArray(women);
+    women = inputListToArray(women);
     return teams([men, women], nbrOfTeams, true);
   }
 };
