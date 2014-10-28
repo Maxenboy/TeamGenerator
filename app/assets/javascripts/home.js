@@ -94,7 +94,7 @@ function resultListHtml(teams) {
   teamMember = null;
   if( teams.length < 1 ) return '<h1> Not enough names!! </h1>';
   for (var i = 0; i < teams.length; i++) {
-    html += '<div class="col-sm-6 col-md-4 col-lg-3 resultbox"><h1 contenteditable="true">Team '+(i+1)+'</h1><ul>';
+    html += '<div class="col-sm-6 col-md-4 col-lg-3 resultbox"><h1 contenteditable="true">'+teamHeading(getURLParameter('team_names'),i)+'</h1><ul>';
     team = teams[i];
     for (var j = 0; j < team.length; j++) {
       teamMember = team[j];
@@ -108,26 +108,26 @@ function resultListHtml(teams) {
 function teamHeading(category,index){
   var heading = '';
   switch(category){
-    case "animals":
+    case "animal":
     heading = 'The ' + DOMESTIC_ANIMALS[Math.floor((Math.random() * DOMESTIC_ANIMALS.length))] + 's';
     break;
-    case "cities":
+    case "city":
     heading = 'The ' + CITIES[Math.floor((Math.random() * CITIES.length))] + 's';
     break;
-    case "countries":
+    case "country":
     heading = 'The ' + COUNTRIES[Math.floor((Math.random() * COUNTRIES.length))] + 's';
     break;
-    case "names":
+    case "name":
     heading = 'The ' + NAMES[Math.floor((Math.random() * NAMES.length))] + 's';
     break;
-    case "colours":
+    case "colour":
     heading = 'The ' + COLOURS[Math.floor((Math.random() * COLOURS.length))] + 's';
     break;
-    case "fruits":
+    case "fruit":
     heading = 'The ' + FRUITS[Math.floor((Math.random() * FRUITS.length))] + 's';
     break;
     default:
-    heading = 'Team ' + index + 1;
+    heading = 'Team ' + (index + 1);
     break;
   }
   return heading;
