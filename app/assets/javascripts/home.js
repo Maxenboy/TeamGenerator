@@ -164,7 +164,11 @@ function renderTeamList(nbrOfTeams, teamFunction, list, list1) {
 
       document.getElementById('result').innerHTML = resultListHtml(teamFunction(nbrOfTeams, list, list1));
       resultBoxes = document.getElementsByClassName('resultbox');
-      maxHeight   = resultBoxes[0].clientHeight;
+      for (var i = 0; i < resultBoxes.length; i++){
+        if( resultBoxes[i].clientHeight > maxHeight ){
+         maxHeight   = resultBoxes[i].clientHeight;
+        }
+      }
       for (var i = 0; i < resultBoxes.length; i++) {
         resultBoxes[i].style.minHeight = maxHeight + 'px';
       }
