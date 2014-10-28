@@ -14,7 +14,7 @@ class HomeController < ApplicationController
   		nbr_of_teams: params[:nbrOfTeams],
       uuid:         params[:uuid]
   	)
-  	redirect_to home_index_path(page: :result, radio: params[:radio], team_names: params[:teamheding])
+  	redirect_to home_index_path(page: :result, radio: params[:radio], team_names: params[:teamheading])
   end
 
   def shuffle_chart
