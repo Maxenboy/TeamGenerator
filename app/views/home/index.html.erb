@@ -2,81 +2,84 @@
 
   <div class="row">
     <div class="col-lg-12 team-generator">
-      
-      <ul class="nav nav-tabs">
-        <li class="<%= 'active' if params[:page] == 'names' || params[:page].nil? %>">
-        <%= link_to 'Names', root_path(params.merge(page: :names)) %>
-        </li>
-        <li class="<%= 'active' if params[:page] == 'result' %>">
-        <%= link_to 'Result', root_path(params.merge(page: :result)) %>
-        </li>
-      </ul>
-
+      <div class="strip">
+        <ul class="nav nav-tabs">
+          <li class="<%= 'active' if params[:page] == 'names' || params[:page].nil? %>">
+            <%= link_to 'Names', root_path(params.merge(page: :names)) %>
+          </li>
+          <li class="<%= 'active' if params[:page] == 'result' %>">
+            <%= link_to 'Result', root_path(params.merge(page: :result)) %>
+          </li>
+        </ul>
+      </div>
       <form method="post" action="/home/shuffle" id="participant-form" class="form-inline">
 
         <input type="hidden" value="result" name="page">
         <input type="hidden" value="<%= user_uuid %>" name="uuid">
 
-          <div class="form-group">
-            Number of teams (only numbers):
-            <input type="number" class="form-control" min="2" max="99" autocomplete="off" name="nbrOfTeams" size="2" maxlength="2" autofocus id="nbrOfTeams" required>
-          </div>
-          <label class="radio-inline">
-            <input type="radio" value="random" name="radio" id="random" checked> Random 
-          </label>
-          <label class="radio-inline">
-            <input type="radio" value="gender" name="radio" id="gender"> Gender
-          </label>
-          <select name="teamheading" >
-           <option value="default"></option>
-            <option value="animal">Animals</option>
-            <option value="city">Cities</option>
-            <option value="country">Countries</option>
-            <option value="name">Names</option>
-            <option value="colour">Colours</option>
-            <option value="fruit">Fruits</option>
-            </select> 
-             Team headings
-          <br><br>
-        <div id="genderwrapper" >
-          <div>
-            <textarea spellcheck="false" name="mentext" rows="5" cols="1" wrap="hard" id="men" placeholder="Names of the male participants" ></textarea>
-          </div>
-          <div>
-            <textarea spellcheck="false" name="womentext" rows="5" cols="1" wrap="hard" id="women" placeholder="Names of the female participants" ></textarea>
-          </div>
+        <div class="form-group">
+          Number of teams (only numbers):
+          <input type="number" class="form-control" min="2" max="99" autocomplete="off" name="nbrOfTeams" size="2" maxlength="2" autofocus id="nbrOfTeams" required>
         </div>
-        <div id="randomwrapper" >
-          <div >
-            <textarea spellcheck="false"  name="area" rows="9" cols="1" wrap="hard" id="randomnames" placeholder="Names of the participants" ></textarea>
-          </div>
+        <label class="radio-inline">
+          <input type="radio" value="random" name="radio" id="random" checked> Random 
+        </label>
+        <label class="radio-inline">
+          <input type="radio" value="gender" name="radio" id="gender"> Gender
+        </label>
+        <select name="teamheading" >
+         <option value="default"></option>
+         <option value="animal">Animals</option>
+         <option value="city">Cities</option>
+         <option value="country">Countries</option>
+         <option value="name">Names</option>
+         <option value="colour">Colours</option>
+         <option value="fruit">Fruits</option>
+       </select> 
+       Team headings
+       <br><br>
+       <div id="genderwrapper" >
+        <div>
+          <textarea spellcheck="false" name="mentext" rows="5" cols="1" wrap="hard" id="men" placeholder="Names of the male participants" ></textarea>
         </div>
-        <p>
-          <input class="btn btn-default" type="submit" value="Generate" />
-          <input class="btn btn-default" type="reset" value="Clear" />
-        </p>
+        <div>
+          <textarea spellcheck="false" name="womentext" rows="5" cols="1" wrap="hard" id="women" placeholder="Names of the female participants" ></textarea>
+        </div>
+      </div>
+      <div id="randomwrapper" >
+        <div >
+          <textarea spellcheck="false"  name="area" rows="9" cols="1" wrap="hard" id="randomnames" placeholder="Names of the participants" ></textarea>
+        </div>
+      </div>
+      <p>
+        <input class="btn btn-default" type="submit" value="Generate" />
+        <input class="btn btn-default" type="reset" value="Clear" />
+      </p>
 
-      </form>
+    </form>
 
-      <section id="result-section">
-        <div id="progress-bar"></div>
-        <div class="progress"></div>
-        <div id="result"></div>
-      </section>
+    <section id="result-section">
+      <div id="progress-bar"></div>
+      <div class="progress"></div>
+      <div id="result"></div>
+    </section>
 
-    </div>
   </div>
 </div>
+</div>
 <hr>
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6">
-      <h3 class="center-title">All generated teams</h3>
-      <%= column_chart home_all_shuffled_date_chart_path, library: { backgroundColor: 'transparent' } %>
-    </div>
-    <div class="col-sm-6">
-      <h3 class="center-title">Your generated teams</h3>
-      <%= column_chart home_user_shuffled_date_chart_path, library: { backgroundColor: 'transparent' } %>
+
+<div class="strip">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="center-title">All generated teams</h3>
+        <%= column_chart home_all_shuffled_date_chart_path, library: { backgroundColor: 'transparent' } %>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="center-title">Your generated teams</h3>
+        <%= column_chart home_user_shuffled_date_chart_path, library: { backgroundColor: 'transparent' } %>
+      </div>
     </div>
   </div>
 </div>

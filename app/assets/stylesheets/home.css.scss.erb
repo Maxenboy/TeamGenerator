@@ -2,8 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 /*  Max Åberg
- mabe1411
- aaberg.max@gmail.com   */
+mabe1411
+aaberg.max@gmail.com   */
 
 @font-face {
   font-family: Resultfont;
@@ -22,7 +22,7 @@ body {
 }
 
 a:link, a:visited {
-color: black;
+  color: black;
 }
 
 header img {
@@ -85,4 +85,14 @@ footer {
 
 .center-title {
   text-align: center;
+}
+@media print {
+
+  footer{
+    display: none;
+  }
+  .strip{
+    display: none;
+    }
+
 }

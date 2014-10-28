@@ -109,22 +109,22 @@ function teamHeading(category,index){
   var heading = '';
   switch(category){
     case "animal":
-    heading = 'The ' + DOMESTIC_ANIMALS[Math.floor((Math.random() * DOMESTIC_ANIMALS.length))] + 's';
+    heading = 'The ' + DOMESTIC_ANIMALS[Math.floor((Math.random() * DOMESTIC_ANIMALS.length))] + '`s';
     break;
     case "city":
-    heading = 'The ' + CITIES[Math.floor((Math.random() * CITIES.length))] + 's';
+    heading = 'The ' + CITIES[Math.floor((Math.random() * CITIES.length))] + '`s';
     break;
     case "country":
-    heading = 'The ' + COUNTRIES[Math.floor((Math.random() * COUNTRIES.length))] + 's';
+    heading = 'The ' + COUNTRIES[Math.floor((Math.random() * COUNTRIES.length))] + '`s';
     break;
     case "name":
-    heading = 'The ' + NAMES[Math.floor((Math.random() * NAMES.length))] + 's';
+    heading = 'The ' + NAMES[Math.floor((Math.random() * NAMES.length))] + '`s';
     break;
     case "colour":
-    heading = 'The ' + COLOURS[Math.floor((Math.random() * COLOURS.length))] + 's';
+    heading = 'The ' + COLOURS[Math.floor((Math.random() * COLOURS.length))] + '`s';
     break;
     case "fruit":
-    heading = 'The ' + FRUITS[Math.floor((Math.random() * FRUITS.length))] + 's';
+    heading = 'The ' + FRUITS[Math.floor((Math.random() * FRUITS.length))] + '`s';
     break;
     default:
     heading = 'Team ' + (index + 1);
